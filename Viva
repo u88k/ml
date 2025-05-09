@@ -1,0 +1,169 @@
+1. What's the trade-off between bias and variance? [src]
+If our model is too simple and has very few parameters then it may have high bias and low variance. On the other hand if our model has large number of parameters then it’s going to have high variance and low bias. So we need to find the right/good balance without overfitting and underfitting the data. [src]
+
+2. What is gradient descent? [src]
+
+Gradient descent is an optimization algorithm used to find the values of parameters (coefficients) of a function (f) that minimizes a cost function (cost).
+
+Gradient descent is best used when the parameters cannot be calculated analytically (e.g. using linear algebra) and must be searched for by an optimization algorithm.
+
+3. Explain over- and under-fitting and how to combat them?
+
+ML/DL models essentially learn a relationship between its given inputs(called training features) and objective outputs(called labels). Regardless of the quality of the learned relation(function), its performance on a test set(a collection of data different from the training input) is subject to investigation.
+
+Most ML/DL models have trainable parameters which will be learned to build that input-output relationship. Based on the number of parameters each model has, they can be sorted into more flexible(more parameters) to less flexible(less parameters).
+
+The problem of Underfitting arises when the flexibility of a model(its number of parameters) is not adequate to capture the underlying pattern in a training dataset. Overfitting, on the other hand, arises when the model is too flexible to the underlying pattern. In the later case it is said that the model has “memorized” the training data.
+
+An example of underfitting is estimating a second order polynomial(quadratic function) with a first order polynomial(a simple line). Similarly, estimating a line with a 10th order polynomial would be an example of overfitting.
+
+4. How do you combat the curse of dimensionality? [src]
+Feature Selection(manual or via statistical methods)
+Principal Component Analysis (PCA)
+Multidimensional Scaling
+Locally linear embedding
+[src]
+
+
+5. What is regularization, why do we use it, and give some examples of common methods? [src]
+A technique that discourages learning a more complex or flexible model, so as to avoid the risk of overfitting. Examples
+
+
+
+Ridge (L2 norm)
+Lasso (L1 norm)
+The obvious disadvantage of ridge regression, is model interpretability. It will shrink the coefficients for least important predictors, very close to zero. But it will never make them exactly zero. In other words, the final model will include all predictors. However, in the case of the lasso, the L1 penalty has the effect of forcing some of the coefficient estimates to be exactly equal to zero when the tuning parameter λ is sufficiently large. Therefore, the lasso method also performs variable selection and is said to yield sparse models. [src]
+
+6) Explain Principal Component Analysis (PCA)? [src]
+[Answer]
+
+Principal Component Analysis (PCA) is a dimensionality reduction technique used in machine learning to reduce the number of features in a dataset while retaining as much information as possible. It works by identifying the directions (principal components) in which the data varies the most, and projecting the data onto a lower-dimensional subspace along these directions.
+
+..What is data normalization and why do we need it? [src]
+Data normalization is very important preprocessing step, used to rescale values to fit in a specific range to assure better convergence during backpropagation. In general, it boils down to subtracting the mean of each data point and dividing by its standard deviation. If we don't do this then some of the features (those with high magnitude) will be weighted more in the cost function (if a higher-magnitude feature changes by 1%, then that change is pretty big, but for smaller features it's quite insignificant). The data normalization makes all features weighted equally.
+
+
+..What is stratified cross-validation and when should we use it? [src]
+Cross-validation is a technique for dividing data between training and validation sets. On typical cross-validation this split is done randomly. But in stratified cross-validation, the split preserves the ratio of the categories on both the training and validation datasets.
+
+For example, if we have a dataset with 10% of category A and 90% of category B, and we use stratified cross-validation, we will have the same proportions in training and validation. In contrast, if we use simple cross-validation, in the worst case we may find that there are no samples of category A in the validation set.
+
+Stratified cross-validation may be applied in the following scenarios:
+
+On a dataset with multiple categories. The smaller the dataset and the more imbalanced the categories, the more important it will be to use stratified cross-validation.
+On a dataset with data of different distributions. For example, in a dataset for autonomous driving, we may have images taken during the day and at night. If we do not ensure that both types are present in training and validation, we will have generalization problems.
+
+.32) What is an imbalanced dataset? Can you list some ways to deal with it? [src]
+An imbalanced dataset is one that has different proportions of target categories. For example, a dataset with medical images where we have to detect some illness will typically have many more negative samples than positive samples—say, 98% of images are without the illness and 2% of images are with the illness.
+
+There are different options to deal with imbalanced datasets:
+
+Oversampling or undersampling. Instead of sampling with a uniform distribution from the training dataset, we can use other distributions so the model sees a more balanced dataset.
+Data augmentation. We can add data in the less frequent categories by modifying existing data in a controlled way. In the example dataset, we could flip the images with illnesses, or add noise to copies of the images in such a way that the illness remains visible.
+Using appropriate metrics. In the example dataset, if we had a model that always made negative predictions, it would achieve a precision of 98%. There are other metrics such as precision, recall, and F-score that describe the accuracy of the model better when using an imbalanced dataset.
+
+33) Can you explain the differences between supervised, unsupervised, and reinforcement learning? [src]
+In supervised learning, we train a model to learn the relationship between input data and output data. We need to have labeled data to be able to do supervised learning.
+
+With unsupervised learning, we only have unlabeled data. The model learns a representation of the data. Unsupervised learning is frequently used to initialize the parameters of the model when we have a lot of unlabeled data and a small fraction of labeled data. We first train an unsupervised model and, after that, we use the weights of the model to train a supervised model.
+
+In reinforcement learning, the model has some input data and a reward depending on the output of the model. The model learns a policy that maximizes the reward. Reinforcement learning has been applied successfully to strategic games such as Go and even classic Atari video games.
+
+36) What is Precision?
+Precision (also called positive predictive value) is the fraction of relevant instances among the retrieved instances
+Precision = true positive / (true positive + false positive)
+[src]
+
+37. What is Recall?
+Recall (also known as sensitivity) is the fraction of relevant instances that have been retrieved over the total amount of relevant instances. Recall = true positive / (true positive + false negative)
+[src]
+
+
+38. Define F1-score. [src]
+It is the weighted average of precision and recall. It considers both false positive and false negative into account. It is used to measure the model’s performance.
+F1-Score = 2 * (precision * recall) / (precision + recall)
+
+
+39. What is cost function? [src]
+Cost function is a scalar functions which Quantifies the error factor of the Neural Network. Lower the cost function better the Neural network. Eg: MNIST Data set to classify the image, input image is digit 2 and the Neural network wrongly predicts it to be 3
+
+
+40. List different activation neurons or functions. [src]
+Linear Neuron
+Binary Threshold Neuron
+Stochastic Binary Neuron
+Sigmoid Neuron
+Tanh function
+Rectified Linear Unit (ReLU)
+[08/05, 23:45] +91 88001 25471: 41) Define Learning Rate.
+Learning rate is a hyper-parameter that controls how much we are adjusting the weights of our network with respect the loss gradient. [src]
+
+
+41. What is Momentum (w.r.t NN optimization)?
+Momentum lets the optimization algorithm remembers its last step, and adds some proportion of it to the current step. This way, even if the algorithm is stuck in a flat region, or a small local minimum, it can get out and continue towards the true minimum. [src]
+
+
+42. What is the difference between Batch Gradient Descent and Stochastic Gradient Descent?
+Batch gradient descent computes the gradient using the whole dataset. This is great for convex, or relatively smooth error manifolds. In this case, we move somewhat directly towards an optimum solution, either local or global. Additionally, batch gradient descent, given an annealed learning rate, will eventually find the minimum located in it's basin of attraction.
+
+
+
+Stochastic gradient descent (SGD) computes the gradient using a single sample. SGD works well (Not well, I suppose, but better than batch gradient descent) for error manifolds that have lots of local maxima/minima. In this case, the somewhat noisier gradient calculated using the reduced number of samples tends to jerk the model out of local minima into a region that hopefully is more optimal. [src]
+[08/05, 23:45] +91 88001 25471: 57) When to use a Label Encoding vs. One Hot Encoding?
+This question generally depends on your dataset and the model which you wish to apply. But still, a few points to note before choosing the right encoding technique for your model:
+
+We apply One-Hot Encoding when:
+
+The categorical feature is not ordinal (like the countries above)
+The number of categorical features is less so one-hot encoding can be effectively applied
+We apply Label Encoding when:
+
+The categorical feature is ordinal (like Jr. kg, Sr. kg, Primary school, high school)
+The number of categories is quite large as one-hot encoding can lead to high memory consumption
+[src]
+
+58. What is the difference between LDA and PCA for dimensionality reduction?
+Both LDA and PCA are linear transformation techniques: LDA is a supervised whereas PCA is unsupervised – PCA ignores class labels.
+
+
+
+We can picture PCA as a technique that finds the directions of maximal variance. In contrast to PCA, LDA attempts to find a feature subspace that maximizes class separability.
+
+Keam and Knn value of k , drawback of kmean and knn,Agglomerative clustering is
+
+Label vs One-Hot Encoding
+
+Label: For ordinal data, efficient for many categories.
+
+One-hot: For non-ordinal data, small category set.
+
+LDA vs PCA
+
+PCA: Unsupervised, maximizes variance.
+
+LDA: Supervised, maximizes class separability.
+
+K-means and KNN (K value)
+
+K in K-means: number of clusters; needs tuning.
+
+K in KNN: number of neighbors; small k = sensitive to noise, large k = smoother predictions.
+
+Drawbacks of K-means and KNN
+
+K-means: Assumes spherical clusters, sensitive to initialization and outliers.
+
+KNN: Computationally expensive, performance depends on distance metric and value of k.
+
+Agglomerative Clustering
+
+A bottom-up hierarchical clustering technique.
+
+Each data point starts in its own cluster.
+
+Pairs of clusters merged based on distance criteria until one cluster remains.
+
+Distance metrics include single-link, complete-link, average-link.
+
+
+
